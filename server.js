@@ -7,6 +7,13 @@ const router = require('./router')
 
 const app = express()
 
+// NOTE: If your app is intended to perform cross-origin
+// requests, run `npm install cors` and uncomment the code below
+// Additional configuration may be required, 
+// see https://www.npmjs.com/package/cors
+// const cors = require('cors')
+// app.use(cors())
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(morgan('combined'))
