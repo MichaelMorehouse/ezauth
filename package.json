@@ -20,6 +20,10 @@
   ],
   "author": "Michael Miller",
   "license": "ISC",
+  "engines": {
+    "node": "10.1.0",
+    "npm": "6.1.0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
