@@ -1,0 +1,36 @@
+{
+  "name": "ezauth",
+  "version": "1.0.0",
+  "description": "Express/MongoDB user authentication scaffolding",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/MichaelMorehouse/ezauth"
+  },
+  "keywords": [
+    "express",
+    "jwt",
+    "bcrypt",
+    "mongodb"
+  ],
+  "author": "Michael Miller",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jwt-simple": "^0.5.3",
+    "mongoose": "^5.2.17",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
