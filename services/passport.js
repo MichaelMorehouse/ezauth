@@ -5,6 +5,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt
 
 const User = require('../models/user')
 
+// For dev, set the env var SECRET in the start script
 const secret = process.env.SECRET
 
 // Create a local strategy
