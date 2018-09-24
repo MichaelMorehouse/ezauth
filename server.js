@@ -7,10 +7,10 @@ const router = require('./router')
 
 const app = express()
 
-// NOTE: If your app is intended to perform cross-origin
+// NOTE: If your app is intended to perform or handle cross-origin
 // requests, run `npm install cors` and uncomment the code below
-// Additional configuration may be required, 
-// see https://www.npmjs.com/package/cors
+// Additional configuration may be required, see
+// https://www.npmjs.com/package/cors
 // const cors = require('cors')
 // app.use(cors())
 
