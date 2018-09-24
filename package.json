@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env SECRET=11111 node server.js",
+    "start": "node server.js",
     "dev": "cross-env SECRET=11111 nodemon server.js"
   },
   "repository": {
