@@ -1,12 +1,12 @@
 {
   "name": "ezauth",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Express/MongoDB user authentication scaffolding",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "cross-env SECRET=11111 nodemon server.js"
+    "dev": "cross-env SECRET=123qwe nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,27 +15,29 @@
   "keywords": [
     "express",
     "jwt",
-    "bcrypt",
+    "authentication",
     "mongodb"
   ],
   "author": "Michael Miller",
   "license": "ISC",
   "engines": {
-    "node": "10.1.0",
-    "npm": "6.1.0"
+    "node": "10.15.1",
+    "npm": "6.9.0"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "argon2": "^0.21.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "jwt-simple": "^0.5.3",
-    "mongoose": "^5.2.17",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-simple": "^0.5.5",
+    "mongoose": "^5.4.19",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.10"
   }
 }

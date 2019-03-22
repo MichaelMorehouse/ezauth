@@ -1,11 +1,10 @@
-const path = require('path')
-const express = require('express')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-const morgan = require('morgan')
-const router = require('./router')
+const express = require('express'),
+	mongoose = require('mongoose'),
+	bodyParser = require('body-parser'),
+	morgan = require('morgan'),
+	routes = require('./routes'),
 
-const app = express()
+	app = express()
 
 // NOTE: If your app is intended to perform or handle cross-origin
 // requests, run `npm install cors` and uncomment the code below
@@ -14,25 +13,32 @@ const app = express()
 // const cors = require('cors')
 // app.use(cors())
 
-app.use(bodyParser.urlencoded({extended: true}))
+// Register middleware
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(morgan('combined'))
-// Static files are served from the applications /public directory
-app.use(express.static(path.join(__dirname, "/public")))
+
 // All application requests starting with /api/
 // will use the express router
-app.use('/api', router)
+// app.use('/api', routes)
+
+routes(app)
 
 // Pull connection string from env var or 
 // fallback to local db during development
+// eslint-disable-next-line no-undef
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ezauth'
-const PORT = process.env.PORT || 5050
+// eslint-disable-next-line no-undef
+const PORT = process.env.PORT || 8080
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
-    .then(() => {
-        console.log("Connected to database")
-        app.listen(PORT)
-        console.log(`App listening on port ${PORT}`)
-    })
-    .catch(err=>console.log(err))
+	.then(() => {
+		// eslint-disable-next-line no-console
+		console.log('Connected to database')
+		app.listen(PORT)
+		// eslint-disable-next-line no-console
+		console.log(`App listening on port ${PORT}`)
+	})
+	// eslint-disable-next-line no-console
+	.catch(err => console.log(err))
 
