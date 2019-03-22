@@ -4,7 +4,7 @@ const user = require('../controllers/user'),
 // Import strategies from passport service
 require('../services/passport')
 
-const requireSignin = passport.authenticate('local', { session: false }),
+const requireLogin = passport.authenticate('local', { session: false }),
 	requireToken = passport.authenticate('jwt', { session: false })
 
 module.exports = function (app) {
@@ -15,7 +15,7 @@ module.exports = function (app) {
 	// /signup route requires no authentication
 	// /login route requires local passport authentication
 	app.post('/signup', user.signup)
-	app.post('/login', requireSignin, user.login)
+	app.post('/login', requireLogin, user.login)
 
 	// Use requireToken middleware for all other routes
 	app.use(/\/.*/, requireToken)
