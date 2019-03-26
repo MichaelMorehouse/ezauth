@@ -39,3 +39,27 @@ exports.signup = function (req, res, next) {
 		})
 		.catch(err => next(err))
 }
+
+exports.changePassword = function (req, res, next) {
+	const password = req.body.password,
+		newPassword = req.body.newPassword
+
+	if (!password || !newPassword) {
+		return res.status(422).send({ error: 'You must provide old and new passwords' })
+	}
+
+	// with stored hashed user password
+	req.user.verifyPassword(password, function (err, isMatch) {
+		if (err) next(err)
+		if (!isMatch) return res.status(422).send({ error: 'Incorrect credentials' })
+		req.user.password = newPassword
+		req.user.save()
+			.then(user => {
+				jwt.tokenForUserAsync(user, function (err, token) {
+					if (err) next(err)
+					res.send({ token: token })
+				})
+			})
+			.catch(err => next(err))
+	})
+}
