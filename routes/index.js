@@ -21,4 +21,5 @@ module.exports = function (app) {
 	app.use(/\/.*/, requireToken)
 	// Additional routes requiring tokens
 	// must be placed below
+	app.post('/changepassword', user.changePassword)
 }
