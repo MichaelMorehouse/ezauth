@@ -37,6 +37,7 @@ const localLogin = new LocalStrategy(localOptions,
 const jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('Authorization'),
 	secretOrKey: secret,
+	algorithms: ['HS256'],
 }
 
 // Create JWT strategy
