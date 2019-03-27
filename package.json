@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "cross-env SECRET=123qwe nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
+    "dotenv": "^7.0.0",
     "nodemon": "^1.18.10"
   }
 }
