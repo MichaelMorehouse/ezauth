@@ -1,4 +1,5 @@
-const user = require('../controllers/user'),
+const router = require('express').Router(),
+	user = require('../controllers/user'),
 	passport = require('passport')
 
 // Import strategies from passport service
@@ -14,12 +15,14 @@ module.exports = function (app) {
 	// Routes with special middleware requirements
 	// /signup route requires no authentication
 	// /login route requires local passport authentication
-	app.post('/signup', user.signup)
-	app.post('/login', requireLogin, user.login)
+	router.post('/signup', user.signup)
+	router.post('/login', requireLogin, user.login)
 
 	// Use requireToken middleware for all other routes
-	app.use(/\/.*/, requireToken)
+	router.use(/\/.*/, requireToken)
 	// Additional routes requiring tokens
 	// must be placed below
-	app.post('/changepassword', user.changePassword)
+	router.post('/changepassword', user.changePassword)
+
+	app.use('/', router)
 }

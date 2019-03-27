@@ -3,9 +3,11 @@ const express = require('express'),
 	mongoose = require('mongoose'),
 	bodyParser = require('body-parser'),
 	morgan = require('morgan'),
-	routes = require('./routes'),
+	cipher = require('./services/cipher').cipherService,
+	decipher = require('./services/cipher').decipherService,
+	routes = require('./routes')
 
-	app = express()
+let app = express()
 
 // NOTE: If your app is intended to perform or handle cross-origin
 // requests, run `npm install cors` and uncomment the code below
@@ -19,11 +21,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(morgan('combined'))
 
-// All application requests starting with /api/
-// will use the express router
-// app.use('/api', routes)
+app.use(decipher)
 
 routes(app)
+
+app.use(cipher)
 
 // Pull connection string from env var or 
 // fallback to local db during development
