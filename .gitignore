@@ -1,2 +1,7 @@
 node_modules
 public/assets
+
+.vscode
+.env
+.env.local
+.env.*.local
