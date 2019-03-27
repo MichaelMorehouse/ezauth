@@ -5,10 +5,11 @@ const User = require('../db/models/user'),
 exports.login = function (req, res) {
 	// User has already been authenticated by passport
 	// We just need to give them a token
-	jwt.tokenForUserAsync(req.user, function (err, token) {
-		if (err) res.send(err)
-		res.send({ token: token })
-	})
+	jwt.tokenForUser(req.user)
+		.then(token => {
+			res.send({ token: token })
+		})
+		.catch(err => res.json({ error: 'Unable to generate token' }))
 }
 
 exports.signup = function (req, res, next) {
@@ -30,15 +31,17 @@ exports.signup = function (req, res, next) {
 			// Respond to successful save with jwt token
 			user.save()
 				.then(user => {
-					jwt.tokenForUserAsync(user, function (err, token) {
-						if (err) next(err)
-						res.send({ token: token })
-					})
+					jwt.tokenForUser(user)
+						.then(token => {
+							res.send({ token: token })
+						})
+						.catch(err => res.json({ error: 'Unable to generate token' }))
 				})
 				.catch(err => next(err))
 		})
 		.catch(err => next(err))
 }
+
 
 exports.changePassword = function (req, res, next) {
 	const password = req.body.password,
@@ -55,10 +58,11 @@ exports.changePassword = function (req, res, next) {
 		req.user.password = newPassword
 		req.user.save()
 			.then(user => {
-				jwt.tokenForUserAsync(user, function (err, token) {
-					if (err) next(err)
-					res.send({ token: token })
-				})
+				jwt.tokenForUser(user)
+					.then(token => {
+						res.send({ token: token })
+					})
+					.catch(err => res.json({ error: 'Unable to generate token' }))
 			})
 			.catch(err => next(err))
 	})
